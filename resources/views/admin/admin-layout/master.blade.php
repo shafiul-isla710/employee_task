@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <style>
-       body {
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    .sidebar {
-      min-width: 200px;
-      max-width: 250px;
-      background-color: #343a40;
-      color: white;
-      min-height: 100vh;
-    }
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-    }
-    .sidebar .nav-link:hover {
-      background-color: #495057;
-    }
-    .content {
-      padding: 20px;
-      width: 100%;
-    }
-    .navbar-custom {
-      background-color: #6c757d;
-    }
-</style>
+  {{-- Custom styles --}}
+  <style>
+      body {
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      .sidebar {
+        min-width: 200px;
+        max-width: 250px;
+        background-color: #343a40;
+        color: white;
+        min-height: 100vh;
+      }
+      .sidebar a {
+        color: white;
+        text-decoration: none;
+      }
+      .sidebar .nav-link:hover {
+        background-color: #495057;
+      }
+      .content {
+        padding: 20px;
+        width: 100%;
+      }
+      .navbar-custom {
+        background-color: #6c757d;
+      }
+  </style>
 
-@stack('styles')
+  @stack('styles')
 </head>
 <body>
 
-
-@section('content')
-
-   <div class="d-flex">
+  <div class="d-flex">
     <!-- Sidebar -->
     <nav class="sidebar d-flex flex-column p-3">
       <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -109,10 +107,7 @@
     </div>
   </div>
 
-  <script>
-    
-  </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

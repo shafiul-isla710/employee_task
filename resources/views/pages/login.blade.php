@@ -10,6 +10,11 @@
 
 @section('content')
     <div class="row justify-content-center align-items-center" id="login-section">
+        @if(session('error'))
+            <div class="alert alert-danger w-100 text-center">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="col-md-6 col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-body">
