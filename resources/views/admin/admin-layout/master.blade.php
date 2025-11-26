@@ -46,7 +46,7 @@
     <!-- Sidebar -->
     <nav class="sidebar d-flex flex-column p-3">
       <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <span class="fs-4">Admin Dashboard</span>
+        <span class="">Admin Dashboard</span>
       </a>
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
@@ -92,7 +92,12 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{ url('/logout') }}">Logout</a></li>
+              <li class="nav-item">
+                <form action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="btn btn-link nav-link">Logout</button>
+                </form>
+              </li>
             </ul>
           </div>
         </div>

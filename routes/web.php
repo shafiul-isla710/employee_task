@@ -5,13 +5,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -19,12 +16,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Guest Middleware Routes
 Route::middleware('guest')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/login', [HomeController::class, 'login'])->name('login');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/login', [HomeController::class, 'login'])->name('login-page');
+});
 
-    //Dashboard Route
-    Route::get('/dashboard', [DashboardController::class, 'dashboardPage'])->name('admin.dashboard');
+//Auth Middleware Routes
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/admin/dashboard', [DashboardController::class, 'dashboardPage'])->name('admin.dashboard');
 });
 
 require __DIR__.'/auth.php';
