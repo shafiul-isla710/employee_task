@@ -49,7 +49,7 @@
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="#" class="nav-link text-white">Dashboard</a>
+          <a href="{{ route('admin.dashboard') }}" class="nav-link text-white">Dashboard</a>
         </li>
         <li>
           <a href="#productSubmenu" data-bs-toggle="collapse" class="nav-link text-white">Employees</a>
@@ -61,11 +61,11 @@
           </div>
         </li>
         <li>
-          <a href="#categorySubmenu" data-bs-toggle="collapse" class="nav-link text-white">Category</a>
+          <a href="#categorySubmenu" data-bs-toggle="collapse" class="nav-link text-white">Task</a>
           <div class="collapse" id="categorySubmenu">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="nav-link text-white ps-4">Show Category</a></li>
-              <li><a href="#" class="nav-link text-white ps-4">Create Category</a></li>
+              <li><a href="{{ route('admin.task.index') }}" class="nav-link text-white ps-4">Task List</a></li>
+              <li><a href="{{ route('admin.task.create') }}" class="nav-link text-white ps-4">Task Create</a></li>
             </ul>
           </div>
         </li>

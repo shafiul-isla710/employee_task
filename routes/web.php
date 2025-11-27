@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AdminMiddlweare;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Employee\EmployeeDashboardController;
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->group(function 
 
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboardPage'])->name('admin.dashboard');
     Route::resource('/admin/employees', EmployeeController::class)->names('admin.employees');
+    Route::resource('/admin/task', TaskController::class)->names('admin.task');
 
 });
 
