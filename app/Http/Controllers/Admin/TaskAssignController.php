@@ -13,7 +13,7 @@ class TaskAssignController extends Controller
     public function taskAssignPage($id)
     {
         $task = Task::find($id);
-        
+
         $employees = User::employee()->get();
         return view('admin.task.task-assign', compact('task','employees'));
     }
@@ -26,6 +26,9 @@ class TaskAssignController extends Controller
         ]);
 
         $task = Task::findOrFail($request->id);
+
+        $task->status = 'assigned';
+        $task->save();
 
         $task->users()->syncWithoutDetaching([$request->user_id => ['assigned_at' => now()]]);
         return redirect()->route('admin.task.index')->with('success', 'Task assigned successfully.');

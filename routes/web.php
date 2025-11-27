@@ -37,12 +37,17 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->group(function 
         Route::post('/task/assign/{id}', [TaskAssignController::class, 'assignTask'])->name('task.assign');
     });
 });
+
 //Auth & Admin Middleware Routes
 Route::middleware(['auth', 'verified', EmployeeMiddleware::class])->group(function () {
 
-    /* Employee Dashboard Route start */
-    Route::get('/employee/dashboard', [EmployeeDashboardController::class, 'employeeDashboard'])->name('employee.dashboard');
-    /* Employee Dashboard Route End */
+    Route::prefix('employee')->group(function(){
+        Route::get('/dashboard', [EmployeeDashboardController::class, 'employeeDashboard'])->name('employee.dashboard');
+        Route::get('/task', [EmployeeDashboardController::class, 'employeeTasks'])->name('employee.tasks');
+        Route::get('/show-task/{id}', [EmployeeDashboardController::class, 'showTask'])->name('employee.task.show');
+    });
+    
+    
 
 });
 

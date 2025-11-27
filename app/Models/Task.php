@@ -15,6 +15,8 @@ class Task extends Model
     //Relation with Users
     public function users()
     {
-        return $this->belongsToMany(User::class, 'task_user');
+        return $this->belongsToMany(User::class, 'task_user')
+            ->withPivot('assigned_at', 'completed_at')
+            ->withTimestamps();
     }
 }
