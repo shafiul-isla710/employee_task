@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
     public function dashboardPage()
     {
-        return view('admin.dashboard');
+        $totalEmployees = User::where('role', 'employee')->count();
+        $totalTasks = Task::count();
+        return view('admin.dashboard', compact('totalEmployees','totalTasks'));
     }
 }
