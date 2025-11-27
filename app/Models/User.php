@@ -48,4 +48,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Employee Scope creation
+    public function scopeEmployee($query)
+    {
+        return $query->where('role', 'employee');
+    }
+
+    //Relation with Tasks
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class, 'task_user',);
+    }
 }

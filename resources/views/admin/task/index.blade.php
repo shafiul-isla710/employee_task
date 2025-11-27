@@ -39,6 +39,7 @@
                     <td>
                         <div>
                             <a class="btn btn-primary btn-sm" href="{{ route('admin.task.edit', $task->id) }}">Edit</a>
+                            <a class="btn btn-info btn-sm" href="{{ route('admin.task.assign', $task->id) }}">Assign</a>
                             <form action="{{ route('admin.task.destroy', $task->id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
