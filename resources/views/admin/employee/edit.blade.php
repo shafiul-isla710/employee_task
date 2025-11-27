@@ -17,8 +17,9 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.employees.update',$employee->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             @include('admin.employee.form')
                         </form>
                     </div>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\EmployeeStoreRequest;
+use App\Http\Requests\EmployeeUpdateRequest;
 
 class EmployeeController extends Controller
 {
@@ -65,7 +67,29 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // $data = $request->validated();
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' .$id,
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'status' => 'required|in:1,0',
+        ]);
+
+        $employee = User::findOrFail($id);
+
+        if($request->hasFile('image')) {
+            
+            if($employee->image) {
+                Storage::disk('public')->delete($employee->image);
+            }
+
+            $imagePath = $request->file('image')->store('employees', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        User::where('id', $id)->update($data);
+
+        return redirect()->route('admin.employees.index')->with('success', 'Employee updated successfully');
     }
 
     /**
@@ -73,6 +97,14 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $employee = User::findOrFail($id);
+
+        if($employee->image) {
+            Storage::disk('public')->delete($employee->image);
+        }
+
+        $employee->delete();
+
+        return redirect()->route('admin.employees.index')->with('success', 'Employee deleted successfully');
     }
 }
