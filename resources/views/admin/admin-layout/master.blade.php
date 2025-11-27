@@ -57,7 +57,6 @@
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li><a class="nav-link text-white ps-4" href="{{ route('admin.employees.index') }}">Employee</a></li>
               <li><a class="nav-link text-white ps-4" href="{{ route('admin.employees.create') }}">Create Employee</a></li>
-              <li><a class="nav-link text-white ps-4">Update Employee</a></li>
             </ul>
           </div>
         </li>
