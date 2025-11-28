@@ -6,12 +6,13 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     /**
-     * Display the employee profile page
+     * Display the Employee Profile Page
      */
     public function profilePage()
     {
@@ -24,7 +25,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * employee profile update
+     * Employee Profile update
      */
     public function updateProfile(Request $request)
     {
@@ -49,5 +50,26 @@ class ProfileController extends Controller
         User::where('id', $id)->update($data);
 
         return redirect()->route('employee.profile')->with('success', 'Employee updated successfully');
+    }
+    /**
+     * Employee Change Password
+     */
+    public function changePassword(Request $request)
+    {
+        $pass = Auth::user()->password;
+        $data = $request->validate([
+            'current-password' => 'required|string|min:6',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if (!Hash::check($data['current-password'], $pass)) {
+            return redirect()->back()->with('error', 'Current Password is not correct');
+        }
+
+        $user = Auth::user();
+        $user->password = Hash::make($data['password']);
+        $user->save();
+
+        return redirect()->route('employee.profile')->with('success', 'Password changed successfully');
     }
 }

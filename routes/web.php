@@ -56,8 +56,10 @@ Route::middleware(['auth', EmployeeMiddleware::class])->group(function () {
 
         //Employees Related Profile Route
         Route::get('/profile', [ProfileController::class, 'profilePage'])->name('employee.profile');
-        Route::get('/reset-password', [ProfileController::class, 'resetPasswordPage'])->name('reset.password.page');
         Route::put('/profile-update', [ProfileController::class, 'updateProfile'])->name('employee.profile.update');
+        
+        Route::get('/reset-password', [ProfileController::class, 'resetPasswordPage'])->name('reset.password.page');
+        Route::put('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
     });
 });
 
