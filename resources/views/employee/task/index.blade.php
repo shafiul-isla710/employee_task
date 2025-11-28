@@ -35,7 +35,7 @@
                             <span class="badge bg-success">
                                 {{ $task->status }}
                             </span>
-                       @elseif ($task->status == 'completed')
+                       @else
                             <span class="badge bg-info">
                                 {{ $task->status }}
                             </span>
@@ -45,9 +45,9 @@
                         <div>
                             <a class="btn btn-primary btn-sm" href="{{ route('employee.task.show', $task->id) }}">Show</a>
                             @if($task->status == 'assigned')
-                            <a class="btn btn-info btn-sm" href="{{ route('employee.task.complete', $task->id) }}">Complete</a>
-                            @elseif ($task->status == 'completed')
-                            <a class="btn btn-secondary btn-sm">Completed</a>
+                                <a class="btn btn-info btn-sm" href="{{ route('employee.task.complete', $task->id) }}">Complete</a>
+                            @else
+                                <a class="btn btn-secondary btn-sm">Completed</a>
                             @endif
                         </div>
                     </td>

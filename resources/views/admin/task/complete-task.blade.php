@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
+                <th scope="col">Complete by</th>
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>
@@ -29,6 +30,7 @@
                     <tr>
                         <td>{{ $task->title }}</td>
                         <td>{{ $task->description }}</td>
+                        <td>{{ $task->completed_by }}</td>
                         <td>
                             <span class="badge bg-success">
                                 {{ $task->status }}
