@@ -11,7 +11,7 @@
             <div class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title">Employee</h5>
-                <p class="card-text">Total Employees : {{ $totalEmployees }}</p>
+                <p class="badge bg-success">Total Employees : {{ $totalEmployees }}</p>
               </div>
             </div>
           </div>
@@ -19,7 +19,7 @@
             <div class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title">Tasks</h5>
-                <p class="card-text">Total Tasks : {{ $totalTasks }}</p>
+                <p class="badge bg-success">Total Tasks : {{ $totalTasks }}</p>
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@
             <div class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title">Completed Task</h5>
-                <p class="card-text">Check all orders.</p>
+                <p class="badge bg-success">Total Completed Tasks : {{ $totalCompletedTasks }}</p>
               </div>
             </div>
           </div>

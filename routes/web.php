@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TaskAssignController;
+use App\Http\Controllers\Admin\CompleteTaskController;
 use App\Http\Controllers\Employee\EmployeeDashboardController;
 
 // Route::get('/dashboard', function () {
@@ -26,7 +27,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [HomeController::class, 'login'])->name('login-page');
 
 //Auth & Admin Middleware Routes
-Route::middleware(['auth', 'verified', AdminMiddleware::class])->group(function () {
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::prefix('admin')->group(function(){
         Route::get('/dashboard', [DashboardController::class, 'dashboardPage'])->name('admin.dashboard');
         Route::resource('/employees', EmployeeController::class)->names('admin.employees');
@@ -35,11 +36,16 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->group(function 
         /* Task Assign Route  */
         Route::get('/task/assign/{id}', [TaskAssignController::class, 'taskAssignPage'])->name('admin.task.assign');
         Route::post('/task/assign/{id}', [TaskAssignController::class, 'assignTask'])->name('task.assign');
+
+        /* Complete Approved Task Route */
+        Route::get('/complete-task', [CompleteTaskController::class, 'completeTaskPage'])->name('admin.task.complete');
+        Route::get('/approve-task', [CompleteTaskController::class, 'approveTaskPage'])->name('admin.task.approve');
+        Route::get('/approve-task/{id}', [CompleteTaskController::class, 'approveTask'])->name('admin.approve');
     });
 });
 
-//Auth & Admin Middleware Routes
-Route::middleware(['auth', 'verified', EmployeeMiddleware::class])->group(function () {
+//Auth & Employee Middleware Routes
+Route::middleware(['auth', EmployeeMiddleware::class])->group(function () {
 
     Route::prefix('employee')->group(function(){
         Route::get('/dashboard', [EmployeeDashboardController::class, 'employeeDashboard'])->name('employee.dashboard');
@@ -48,9 +54,6 @@ Route::middleware(['auth', 'verified', EmployeeMiddleware::class])->group(functi
 
         Route::get('/complete-task/{id}', [EmployeeDashboardController::class, 'completeTask'])->name('employee.task.complete');
     });
-    
-    
-
 });
 
 

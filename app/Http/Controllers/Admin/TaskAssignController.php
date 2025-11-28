@@ -14,7 +14,7 @@ class TaskAssignController extends Controller
     {
         $task = Task::find($id);
 
-        $employees = User::employee()->get();
+        $employees = User::employee()->where('status', 1)->get();
         return view('admin.task.task-assign', compact('task','employees'));
     }
 

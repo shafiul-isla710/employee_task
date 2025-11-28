@@ -13,6 +13,9 @@ class DashboardController extends Controller
     {
         $totalEmployees = User::where('role', 'employee')->count();
         $totalTasks = Task::count();
-        return view('admin.dashboard', compact('totalEmployees','totalTasks'));
+        $totalCompletedTasks = Task::where('status', 'completed')->count();
+
+        return view('admin.dashboard', compact('totalEmployees','totalTasks','totalCompletedTasks'));
     }
+
 }
