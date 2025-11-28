@@ -40,6 +40,7 @@ class EmployeeDashboardController extends Controller
         $task = Task::findOrFail($id);
 
         //Task status change
+        $task->completed_by = Auth::user()->name;
         $task->status = 'completed';
         $task->save();
 
