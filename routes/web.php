@@ -4,12 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AdminMiddlweare;
-use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployeeMiddleware;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TaskAssignController;
+use App\Http\Controllers\Employee\ProfileController;
 use App\Http\Controllers\Admin\CompleteTaskController;
 use App\Http\Controllers\Employee\EmployeeDashboardController;
 
@@ -53,6 +53,11 @@ Route::middleware(['auth', EmployeeMiddleware::class])->group(function () {
         Route::get('/show-task/{id}', [EmployeeDashboardController::class, 'showTask'])->name('employee.task.show');
 
         Route::get('/complete-task/{id}', [EmployeeDashboardController::class, 'completeTask'])->name('employee.task.complete');
+
+        //Employees Related Profile Route
+        Route::get('/profile', [ProfileController::class, 'profilePage'])->name('employee.profile');
+        Route::get('/reset-password', [ProfileController::class, 'resetPasswordPage'])->name('reset.password.page');
+        Route::put('/profile-update', [ProfileController::class, 'updateProfile'])->name('employee.profile.update');
     });
 });
 
