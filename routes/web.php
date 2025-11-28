@@ -56,7 +56,4 @@ Route::middleware(['auth', EmployeeMiddleware::class])->group(function () {
     });
 });
 
-
-
-
 require __DIR__.'/auth.php';
