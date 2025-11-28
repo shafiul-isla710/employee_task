@@ -52,7 +52,7 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white">Dashboard</a>
+                    <a href="{{ route('employee.dashboard') }}" class="nav-link text-white">Dashboard</a>
                 </li>
                 <li>
                     <a href="{{ route('employee.tasks') }}" class="nav-link text-white">Tasks</a>

@@ -25,30 +25,37 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($tasks as $task)
+            @if($tasks->isNotEmpty())
+                @foreach($tasks as $task)
+                    <tr>
+                        <td>{{ $task->title }}</td>
+                        <td>{{ $task->description }}</td>
+                        <td>
+                        <span class="badge bg-success">
+                            {{ $task->status }}
+                        </span>
+                        </td>
+                        <td>
+                            <div>
+                                <a class="btn btn-primary btn-sm" href="{{ route('admin.task.edit', $task->id) }}">Edit</a>
+                                <a class="btn btn-info btn-sm" href="{{ route('admin.task.assign', $task->id) }}">Assign</a>
+                                <form action="{{ route('admin.task.destroy', $task->id) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            @else
                 <tr>
-                    {{-- @dd($task->image) --}}
-                    
-                    <td>{{ $task->title }}</td>
-                    <td>{{ $task->description }}</td>
-                    <td>
-                       <span class="badge bg-success">
-                          {{ $task->status }}
-                       </span>
-                    </td>
-                    <td>
-                        <div>
-                            <a class="btn btn-primary btn-sm" href="{{ route('admin.task.edit', $task->id) }}">Edit</a>
-                            <a class="btn btn-info btn-sm" href="{{ route('admin.task.assign', $task->id) }}">Assign</a>
-                            <form action="{{ route('admin.task.destroy', $task->id) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>
-                            </form>
-                        </div>
-                    </td>
+                    <td colspan="4" class="text-center">No tasks found.</td>
                 </tr>
-            @endforeach
+            @endif
+
+
+            
         </tbody>
     </table>
 </div>

@@ -26,37 +26,42 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($employees as $employee)
+            @if($employees->isNotEmpty())
+                @foreach($employees as $employee)
+                    <tr>
+                        <th>
+                            @if($employee->image)
+                                <img src="{{ asset('storage/' . $employee->image) }}" style="width: 50px; height: 50px; border-radius: 80%;" alt="">
+                            @else
+                                <img src="{{ asset('storage/employees/dummy.jpeg') }}" style="width: 50px; height: 50px; border-radius: 80%;" alt="">
+                            @endif
+                        </th>
+                        <td>{{ $employee->name }}</td>
+                        <td>{{ $employee->email }}</td>
+                        <td>
+                            @if($employee->status == 1)
+                                <span class="badge bg-success">Active</span>
+                            @else
+                                <span class="badge bg-secondary">Inactive</span>
+                            @endif
+                        </td>
+                        <td>
+                            <div>
+                                <a class="btn btn-primary btn-sm" href="{{ route('admin.employees.edit', $employee->id) }}">Edit</a>
+                                <form action="{{ route('admin.employees.destroy', $employee->id) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this employee?')">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            @else
                 <tr>
-                    {{-- @dd($employee->image) --}}
-                    <th>
-                        @if($employee->image)
-                            <img src="{{ asset('storage/' . $employee->image) }}" style="width: 50px; height: 50px; border-radius: 80%;" alt="">
-                        @else
-                            <img src="{{ asset('storage/employees/dummy.jpeg') }}" style="width: 50px; height: 50px; border-radius: 80%;" alt="">
-                        @endif
-                    </th>
-                    <td>{{ $employee->name }}</td>
-                    <td>{{ $employee->email }}</td>
-                    <td>
-                        @if($employee->status == 1)
-                            <span class="badge bg-success">Active</span>
-                        @else
-                            <span class="badge bg-secondary">Inactive</span>
-                        @endif
-                    </td>
-                    <td>
-                        <div>
-                            <a class="btn btn-primary btn-sm" href="{{ route('admin.employees.edit', $employee->id) }}">Edit</a>
-                            <form action="{{ route('admin.employees.destroy', $employee->id) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this employee?')">Delete</button>
-                            </form>
-                        </div>
-                    </td>
+                    <td colspan="5" class="text-center">No employees found.</td>
                 </tr>
-            @endforeach
+            @endif
         </tbody>
     </table>
 </div>

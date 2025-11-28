@@ -45,6 +45,8 @@ Route::middleware(['auth', 'verified', EmployeeMiddleware::class])->group(functi
         Route::get('/dashboard', [EmployeeDashboardController::class, 'employeeDashboard'])->name('employee.dashboard');
         Route::get('/task', [EmployeeDashboardController::class, 'employeeTasks'])->name('employee.tasks');
         Route::get('/show-task/{id}', [EmployeeDashboardController::class, 'showTask'])->name('employee.task.show');
+
+        Route::get('/complete-task/{id}', [EmployeeDashboardController::class, 'completeTask'])->name('employee.task.complete');
     });
     
     
