@@ -38,11 +38,17 @@
                         <td>
                             <div>
                                 <a class="btn btn-primary btn-sm" href="{{ route('admin.task.edit', $task->id) }}">Edit</a>
+
                                 @if($task->status == 'created')
                                     <a class="btn btn-info btn-sm" href="{{ route('admin.task.assign', $task->id) }}">Assign</a>
-                                @else
-                                    <a class="btn btn-secondary btn-sm">Assigned</a>
+                                @elseif($task->status == 'assigned')
+                                    <a class="btn btn-secondary btn-sm" href="{{ route('task.unassign',$task->id) }}">Unassign</a>
+                                @elseif($task->status == 'completed')
+                                    <a class="btn btn-info btn-sm">Complete</a>
+                                @elseif($task->status == 'approved')
+                                    <a class="btn btn-success btn-sm">Approved</a>
                                 @endif
+
                                 <form action="{{ route('admin.task.destroy', $task->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')

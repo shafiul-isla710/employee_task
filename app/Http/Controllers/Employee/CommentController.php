@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
    
+    /**
+     * Store a newly comment in storage.
+     */
     public function commentStore(Request $request)
     {
         try{

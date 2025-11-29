@@ -33,4 +33,17 @@ class TaskAssignController extends Controller
         $task->users()->syncWithoutDetaching([$request->user_id => ['assigned_at' => now()]]);
         return redirect()->route('admin.task.index')->with('success', 'Task assigned successfully.');
     }
+
+    // Unassign Task
+    public function unassignTask($task_id)
+    {
+        $task = Task::findOrFail($task_id);
+
+        $task->status = 'created';
+        $task->save();
+        $user = $task->users()->first();
+        // dd($user->id);
+        $task->users()->detach($user->id);
+        return redirect()->back()->with('success', 'Task unassigned successfully.');
+    }
 }

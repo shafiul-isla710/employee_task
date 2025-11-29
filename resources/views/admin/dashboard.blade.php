@@ -10,24 +10,44 @@
           <div class="col-md-4">
             <div class="card mb-3">
               <div class="card-body">
-                <h5 class="card-title">Employee</h5>
-                <p class="badge bg-success">Total Employees : {{ $totalEmployees }}</p>
+                <h5 class="card-title mb-3">Employee</h5>
+                <a href="{{ route('admin.employees.index') }}" 
+                  class="btn btn-success">
+                  Total Employees Tasks : {{ $totalEmployees }}
+                </a>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="card mb-3">
               <div class="card-body">
-                <h5 class="card-title">Tasks</h5>
-                <p class="badge bg-success">Total Tasks : {{ $totalTasks }}</p>
+                <h5 class="card-title mb-3">Tasks</h5>
+                <a href="{{ route('admin.task.index') }}" 
+                  class="btn btn-success">
+                  Total Tasks Tasks : {{ $totalTasks }}
+                </a>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="card mb-3">
               <div class="card-body">
-                <h5 class="card-title">Completed Task</h5>
-                <p class="badge bg-success">Total Completed Tasks : {{ $totalCompletedTasks }}</p>
+                <h5 class="card-title mb-3">Completed Task</h5>
+                <a href="{{ route('admin.task.complete') }}" 
+                  class="btn btn-success">
+                  Total Completed Tasks : {{ $totalCompletedTasks }}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Approved Task</h5>
+                <a href="{{ route('admin.task.approve') }}" 
+                  class="btn btn-success">
+                  Total Approved Tasks : {{ $totalApprovedTasks }}
+                </a>
               </div>
             </div>
           </div>

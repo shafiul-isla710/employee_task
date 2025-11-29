@@ -37,6 +37,7 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
         /* Task Assign Route  */
         Route::get('/task/assign/{id}', [TaskAssignController::class, 'taskAssignPage'])->name('admin.task.assign');
         Route::post('/task/assign/{id}', [TaskAssignController::class, 'assignTask'])->name('task.assign');
+        Route::get('/task/unassign/{id}', [TaskAssignController::class, 'unassignTask'])->name('task.unassign');
 
         /* Complete Approved Task Route */
         Route::get('/complete-task', [CompleteTaskController::class, 'completeTaskPage'])->name('admin.task.complete');
@@ -63,7 +64,6 @@ Route::middleware(['auth', EmployeeMiddleware::class])->group(function () {
         Route::put('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
 
         //comment related routes
-        Route::post('/comment/{task_id}', [CommentController::class, 'taskId'])->name('comment.taskId');
         Route::post('/comment/{task_id}', [CommentController::class, 'commentStore'])->name('comment.store');
     });
 });
