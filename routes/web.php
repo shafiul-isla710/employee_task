@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TaskAssignController;
+use App\Http\Controllers\Employee\CommentController;
 use App\Http\Controllers\Employee\ProfileController;
 use App\Http\Controllers\Admin\CompleteTaskController;
 use App\Http\Controllers\Employee\EmployeeDashboardController;
@@ -60,6 +61,10 @@ Route::middleware(['auth', EmployeeMiddleware::class])->group(function () {
         
         Route::get('/reset-password', [ProfileController::class, 'resetPasswordPage'])->name('reset.password.page');
         Route::put('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
+
+        //comment related routes
+        Route::post('/comment/{task_id}', [CommentController::class, 'taskId'])->name('comment.taskId');
+        Route::post('/comment/{task_id}', [CommentController::class, 'commentStore'])->name('comment.store');
     });
 });
 

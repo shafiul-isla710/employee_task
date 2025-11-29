@@ -62,4 +62,10 @@ class User extends Authenticatable
             ->withPivot('assigned_at', 'completed_at')
             ->withTimestamps();
     }
+
+    //Relation with Comments
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
