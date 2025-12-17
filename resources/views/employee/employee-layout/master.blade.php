@@ -11,31 +11,36 @@
 
     {{-- Custom styles --}}
     <style>
-      body {
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
-      .sidebar {
-        min-width: 200px;
-        max-width: 250px;
-        background-color: #343a40;
-        color: white;
-        min-height: 100vh;
-      }
-      .sidebar a {
-        color: white;
-        text-decoration: none;
-      }
-      .sidebar .nav-link:hover {
-        background-color: #495057;
-      }
-      .content {
-        padding: 20px;
-        width: 100%;
-      }
-      .navbar-custom {
-        background-color: #6c757d;
-      }
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            min-width: 200px;
+            max-width: 250px;
+            background-color: #343a40;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #495057;
+        }
+
+        .content {
+            padding: 20px;
+            width: 100%;
+        }
+
+        .navbar-custom {
+            background-color: #6c757d;
+        }
     </style>
 
     @stack('styles')
@@ -43,13 +48,9 @@
 
 <body>
 
-    <div class="d-flex">
+    {{-- <div class="d-flex">
         <!-- Sidebar -->
         <nav class="sidebar d-flex flex-column p-3">
-            <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <span class="">Employee Dashboard</span>
-            </a>
-            <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
                     <a href="{{ route('employee.dashboard') }}" class="nav-link text-white">Dashboard</a>
@@ -86,6 +87,48 @@
             <!-- Dynamic Content -->
             @yield('content')
 
+        </div>
+    </div> --}}
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">TaskManager</a>
+            <div class="d-flex align-items-center">
+                <span class="text-white me-3">Welcome, Employee</span>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Sidebar -->
+            <aside class="col-md-3 col-lg-2 bg-white p-3 vh-100 shadow-sm">
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a class="nav-link active fw-semibold" href="{{ route('employee.dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="{{ route('employee.tasks') }}">My Tasks</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="{{ route('employee.profile') }}">Profile</a>
+                    </li>
+                    <li class="nav-item mt-4">
+                        <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                            <button type="submit" class="btn btn-link nav-link">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="col-md-9 col-lg-10 p-4">
+                <h3 class="fw-bold mb-4">Employee Dashboard</h3>
+
+               @yield('content')
+            </main>
         </div>
     </div>
     @stack('scripts')

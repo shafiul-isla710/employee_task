@@ -1,7 +1,7 @@
 @extends('admin.admin-layout.master')
 
 @section('content')
-    < <!-- Dashboard Content -->
+     <!-- Dashboard Content -->
       <h2 class="mb-3">Welcome to Admin Dashboard</h2>
 
       <!-- Example cards -->
