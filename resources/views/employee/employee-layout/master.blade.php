@@ -95,7 +95,7 @@
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="#">TaskManager</a>
             <div class="d-flex align-items-center">
-                <span class="text-white me-3">Welcome, Employee</span>
+                <span class="text-white me-3">Welcome, {{ Auth::user()->name }}</span>
             </div>
         </div>
     </nav>

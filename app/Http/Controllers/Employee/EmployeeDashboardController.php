@@ -12,7 +12,12 @@ class EmployeeDashboardController extends Controller
     //Employee Dashboard Page
     public function employeeDashboard()
     {
-        return view('employee.employee-dashboard');
+        $user = Auth::user();
+        $employeeTasks = $user->tasks()->get();
+
+        $completed = Task::where('completed_by', $user->name)->count();
+        $approved = Task::where('completed_by', $user->name)->where('status', 'approved')->count();
+        return view('employee.employee-dashboard', compact('employeeTasks','completed','approved'));
     }
 
     //Employee Task List Page
