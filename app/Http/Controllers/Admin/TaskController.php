@@ -33,6 +33,7 @@ class TaskController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'priority' => 'required|string|in:'.implode(',', Task::priority()),
         ]);
 
         Task::create($data);
@@ -65,6 +66,7 @@ class TaskController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'priority' => 'required|string|in:'.implode(',', Task::priority()),
         ]);
 
         $task = Task::findOrFail($id);

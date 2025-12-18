@@ -21,6 +21,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Status</th>
+                <th scope="col">Priority</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -31,9 +32,14 @@
                         <td>{{ $task->title }}</td>
                         <td>{{ $task->description }}</td>
                         <td>
-                        <span class="badge bg-success">
-                            {{ $task->status }}
-                        </span>
+                            <span class="badge bg-success">
+                                {{ $task->status }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                {{ $task->priority }}
+                            </span>
                         </td>
                         <td>
                             <div>

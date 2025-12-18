@@ -10,6 +10,7 @@ class Task extends Model
         'title',
         'description',
         'status',
+        'priority',
         'completed_by'
     ];
 
@@ -25,5 +26,14 @@ class Task extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public static function priority()
+    {
+        return [
+            'low',
+            'medium',
+            'high'
+        ];
     }
 }
